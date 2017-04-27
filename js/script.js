@@ -11,7 +11,7 @@ function geoFindMe() {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    output.innerHTML = '<p>Votre latitude : ' + latitude + '° <br>Votre longitude : ' + longitude + '°</p>';
 
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
@@ -45,12 +45,16 @@ getJSON('index.php?latitude='+ current_position.latitude + '&longitude='+ curren
         objs.sort(function(a,b) {return a.dif - b.dif})
         // show it
         var newUl = document.createElement('ul')
+       
+        newUl.classList.add("list-group");
         for (var key in objs) {
             newLi = document.createElement('li')
+            newLi.classList.add("list-group-item");
             newLi.innerText = objs[key].name + " se trouve à " + objs[key].distance + " de votre position"
             newUl.appendChild(newLi)
         }
         result.appendChild(newUl)
+
     }, function(status) {
         alert('Something went wrong.');
     });
@@ -90,7 +94,7 @@ getJSON('index.php?latitude='+ current_position.latitude + '&longitude='+ curren
     return d;
     }
 
-    output.innerHTML = "<p>Locating…</p>";
+    output.innerHTML = "<img src=\"loading.gif\" width=\"65\">";
 
     navigator.geolocation.getCurrentPosition(success, error);
 }

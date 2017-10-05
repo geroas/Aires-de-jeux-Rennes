@@ -13,10 +13,10 @@ function geoFindMe() {
 
     output.innerHTML = '<p>Votre latitude : ' + latitude + '° <br>Votre longitude : ' + longitude + '°</p>';
 
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+//    var img = new Image();
+//    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
 
-    output.appendChild(img);
+    //output.appendChild(img);
 
     findParcs(position.coords);
     }
@@ -50,7 +50,7 @@ getJSON('index.php?latitude='+ current_position.latitude + '&longitude='+ curren
         for (var key in objs) {
             newLi = document.createElement('li')
             newLi.classList.add("list-group-item");
-            newLi.innerText = objs[key].name + " se trouve à " + objs[key].distance + " de votre position"
+            newLi.innerText = objs[key].name + "(" + objs[key].distance + ")"
             newUl.appendChild(newLi)
         }
         result.appendChild(newUl)
